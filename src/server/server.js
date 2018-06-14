@@ -21,7 +21,11 @@ if(process.env.NODE_ENV !== 'production') {
     publicPath: config.output.publicPath
   }));
 
-  app.use(require('webpack-hot-middleware')(compiler));
+  app.use(require('webpack-hot-middleware')(compiler, {
+    log: console.log,
+    path: '/__webpack_hmr',
+    heartbeat: 10 * 1000
+  }));
 }
 
 // parse json
